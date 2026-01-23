@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, MapPin } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Send } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Contact() {
@@ -37,127 +37,91 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative px-4 md:px-8 lg:px-16 flex justify-center">
-            <div className="w-full max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-16"
-                >
-                    <div className="flex flex-col items-center">
-                        <h2 className="text-5xl md:text-6xl font-black mb-8 text-[var(--foreground)]">
-                            Let's <span className="underline-accent">Connect</span>
-                        </h2>
-                        <div className="w-full flex justify-center">
-                            <p className="text-base md:text-lg text-[var(--text-muted)] max-w-3xl text-center">
-                                Interested in collaborating or have a project in mind? Feel free to reach out!
+        <section id="contact" className="py-24 bg-[var(--background)]">
+            <div className="container-custom mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+                    {/* Left - Info */}
+                    <div className="space-y-8">
+                        <div>
+                            <span className="section-label">Contact With Me</span>
+                            <h2 className="section-title">Let's Connect</h2>
+                            <p className="section-desc mt-4">
+                                Interested in collaborating or have a project in mind? Feel free to reach out to discuss your infrastructure needs.
                             </p>
                         </div>
-                    </div>
-                </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Left - Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h3 className="text-2xl md:text-3xl font-bold mb-8 text-[var(--foreground)]">Get in Touch</h3>
-
-                        <div className="space-y-4">
-                            <a
-                                href="mailto:nasiruddin320@gmail.com"
-                                className="flex items-start gap-4 px-6 py-6 bg-white border border-[var(--border-color)] rounded-2xl hover:border-[var(--accent-blue)] hover:shadow-lg transition-all group"
-                            >
-                                <div className="w-12 h-12 bg-[var(--accent-blue)]/10 rounded-xl flex items-center justify-center group-hover:bg-[var(--accent-blue)] transition-colors flex-shrink-0">
-                                    <Mail className="w-6 h-6 text-[var(--accent-blue)] group-hover:text-white transition-colors" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-[var(--text-muted)] mb-1">Email</p>
-                                    <p className="text-[var(--foreground)] font-semibold">nasiruddin320@gmail.com</p>
-                                </div>
-                            </a>
-
-                            <a
-                                href="https://www.linkedin.com/in/nasiruddinmahmud"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-start gap-4 px-6 py-6 bg-white border border-[var(--border-color)] rounded-2xl hover:border-[var(--accent-blue)] hover:shadow-lg transition-all group"
-                            >
-                                <div className="w-12 h-12 bg-[var(--accent-blue)]/10 rounded-xl flex items-center justify-center group-hover:bg-[var(--accent-blue)] transition-colors flex-shrink-0">
-                                    <Linkedin className="w-6 h-6 text-[var(--accent-blue)] group-hover:text-white transition-colors" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-[var(--text-muted)] mb-1">LinkedIn</p>
-                                    <p className="text-[var(--foreground)] font-semibold">linkedin.com/in/nasiruddinmahmud</p>
-                                </div>
-                            </a>
+                        <div className="space-y-6">
+                            {[
+                                { icon: Mail, label: "Email", value: "nasiruddin320@gmail.com", href: "mailto:nasiruddin320@gmail.com" },
+                                { icon: Linkedin, label: "LinkedIn", value: "in/nasiruddinmahmud", href: "https://www.linkedin.com/in/nasiruddinmahmud" },
+                                { icon: MapPin, label: "Location", value: "Ontario, Canada", href: "#" }
+                            ].map((item, i) => (
+                                <a
+                                    key={i}
+                                    href={item.href}
+                                    className="flex items-center gap-6 p-6 rounded-2xl hover:bg-[var(--section-bg)] transition-colors group border border-transparent hover:border-[var(--border)]"
+                                >
+                                    <div className="w-14 h-14 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full flex items-center justify-center group-hover:bg-[var(--primary)] group-hover:text-white transition-all">
+                                        <item.icon className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-bold text-[var(--muted)] uppercase tracking-wider mb-1">{item.label}</p>
+                                        <p className="text-lg font-bold text-[var(--foreground)]">{item.value}</p>
+                                    </div>
+                                </a>
+                            ))}
                         </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-white border border-[var(--border-color)] rounded-3xl px-8 py-8 shadow-lg"
-                    >
-                        <h3 className="text-xl md:text-2xl font-bold mb-6 text-[var(--foreground)] text-center">Send a Message</h3>
-
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-[var(--foreground)] mb-2 text-center">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full px-4 py-3 bg-[var(--background)] border border-[var(--border-color)] rounded-xl text-[var(--foreground)] focus:border-[var(--accent-blue)] focus:outline-none transition-colors text-center"
-                                    placeholder="Your name"
-                                />
+                    {/* Right - Form */}
+                    <div className="bg-[var(--card-bg)] p-8 md:p-10 rounded-3xl shadow-xl border border-[var(--border)]">
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-[var(--foreground)]">Name</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-lg bg-[var(--section-bg)] border border-[var(--border)] focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 outline-none transition-all"
+                                        placeholder="Your Name"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-[var(--foreground)]">Email</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-4 py-3 rounded-lg bg-[var(--section-bg)] border border-[var(--border)] focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 outline-none transition-all"
+                                        placeholder="email@example.com"
+                                    />
+                                </div>
                             </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-[var(--foreground)] mb-2 text-center">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    required
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full px-4 py-3 bg-[var(--background)] border border-[var(--border-color)] rounded-xl text-[var(--foreground)] focus:border-[var(--accent-blue)] focus:outline-none transition-colors text-center"
-                                    placeholder="your.email@example.com"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-[var(--foreground)] mb-2 text-center">
-                                    Subject
-                                </label>
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold text-[var(--foreground)]">Subject</label>
                                 <input
                                     type="text"
                                     required
                                     value={formData.subject}
                                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                    className="w-full px-4 py-3 bg-[var(--background)] border border-[var(--border-color)] rounded-xl text-[var(--foreground)] focus:border-[var(--accent-blue)] focus:outline-none transition-colors text-center"
-                                    placeholder="Project inquiry"
+                                    className="w-full px-4 py-3 rounded-lg bg-[var(--section-bg)] border border-[var(--border)] focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 outline-none transition-all"
+                                    placeholder="Project Inquiry"
                                 />
                             </div>
 
-                            <div>
-                                <label className="block text-sm font-medium text-[var(--foreground)] mb-2 text-center">
-                                    Message
-                                </label>
+                            <div className="space-y-2">
+                                <label className="text-sm font-semibold text-[var(--foreground)]">Message</label>
                                 <textarea
                                     rows={5}
                                     required
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                    className="w-full px-4 py-3 bg-[var(--background)] border border-[var(--border-color)] rounded-xl text-[var(--foreground)] focus:border-[var(--accent-blue)] focus:outline-none transition-colors resize-none text-center"
+                                    className="w-full px-4 py-3 rounded-lg bg-[var(--section-bg)] border border-[var(--border)] focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 outline-none transition-all resize-none"
                                     placeholder="Tell me about your project..."
                                 />
                             </div>
@@ -165,22 +129,26 @@ export default function Contact() {
                             <button
                                 type="submit"
                                 disabled={status === 'loading'}
-                                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full btn btn-primary py-4 text-white font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
                             >
-                                {status === 'loading' ? 'Sending...' : 'Send Message'}
+                                {status === 'loading' ? 'Sending Message...' : 'Send Message'}
                             </button>
 
                             {status === 'success' && (
-                                <p className="text-green-600 text-center text-sm">Message sent successfully!</p>
+                                <p className="text-green-600 font-medium text-center bg-green-50 p-3 rounded-lg border border-green-200">
+                                    Message sent successfully!
+                                </p>
                             )}
                             {status === 'error' && (
-                                <p className="text-red-600 text-center text-sm">Failed to send message. Please try again.</p>
+                                <p className="text-red-600 font-medium text-center bg-red-50 p-3 rounded-lg border border-red-200">
+                                    Message failed to send. Please try again.
+                                </p>
                             )}
                         </form>
-                    </motion.div>
+                    </div>
+
                 </div>
             </div>
-
         </section>
     );
 }

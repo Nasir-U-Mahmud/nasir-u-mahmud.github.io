@@ -27,12 +27,12 @@ export default function Home() {
                 <Services />
             </div>
 
-            <div id="experience" className="py-24 md:py-32">
-                <Experience />
-            </div>
-
             <div id="projects" className="py-24 md:py-32">
                 <Projects />
+            </div>
+
+            <div id="experience" className="py-24 md:py-32">
+                <Experience />
             </div>
 
             <div className="py-24 md:py-32">
